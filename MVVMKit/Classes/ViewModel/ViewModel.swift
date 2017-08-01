@@ -16,10 +16,5 @@ public protocol ViewModelHolder {
 }
 
 public protocol ViewModelObserver: ViewModelHolder {
-    func bind(viewModel: VM)
-}
-
-public protocol InfoRenderer {
-    associatedtype Info
-    func display(info: Info?)
+    func bind()
 }
