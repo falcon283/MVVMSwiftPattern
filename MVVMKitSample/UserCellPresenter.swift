@@ -9,27 +9,41 @@
 import UIKit
 import MVVMKit
 
-class UserCellBasePresenter : ViewPresenter {
+class UserCellFullNamePresenter : Presenter<UserCell, UserViewModel> {
     
-    typealias VM = UserViewModel
-    typealias V = UserCell
-    
-    var viewModel: UserViewModel?
-    weak var view: UserCell?
-    
-    func bind() { }
-}
-
-class UserCellFullNamePresenter : UserCellBasePresenter {
-    
-    override func bind() {
-        self.view?.nameLabel?.text = viewModel?.name
-        self.view?.surnameLabel?.text = viewModel?.surname
+    override func update(view: UserCell, with viewModel: UserViewModel) {
+        view.nameLabel?.text = viewModel.name
+        view.nameLabel?.textColor = UIColor.blue
+        view.surnameLabel?.text = viewModel.surname
+        view.surnameLabel?.textColor = UIColor.red
     }
 }
 
-class UserCellNamePresenter : UserCellBasePresenter {
-    override func bind() {
-        self.view?.nameLabel?.text = viewModel?.name
+class UserCellNamePresenter : Presenter<UserCell, UserViewModel> {
+    
+    override func update(view: UserCell, with viewModel: UserViewModel) {
+        view.nameLabel?.text = "\(viewModel.name) \(viewModel.surname)"
+        view.nameLabel?.textColor = UIColor.green
+    }
+}
+
+class GenderFullNamePresenter : Presenter<UserCell, UserViewModel> {
+    
+    override func update(view: UserCell, with viewModel: UserViewModel) {
+        view.nameLabel?.text = viewModel.name
+        view.surnameLabel?.text = viewModel.surname
+        view.contentView.backgroundColor = viewModel.gender.genderCellColor
+    }
+}
+
+extension UserViewModel.Gender {
+    
+    var genderCellColor: UIColor {
+        switch self {
+        case .female:
+            return #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        case .male:
+            return #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        }
     }
 }

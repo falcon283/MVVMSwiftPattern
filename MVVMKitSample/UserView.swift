@@ -1,5 +1,5 @@
 //
-//  CustomView.swift
+//  UserView.swift
 //  MVVMKit
 //
 //  Created by FaLcON2 on 02/08/2017.
@@ -9,8 +9,8 @@
 import UIKit
 import MVVMKit
 
-class CustomView : UIView {
+class UserView : UIView {
     @IBOutlet weak var label: UILabel?
 }
 
-extension CustomView : View { }
+extension UserView : View { }

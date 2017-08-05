@@ -9,7 +9,8 @@
 import UIKit
 import MVVMKit
 
-class UserCell : UITableViewCell, Contextable, View {
+class UserCell : UITableViewCell, Contextable, Presentable {
+    
     var context: Any?
     
     @IBOutlet weak var nameLabel: UILabel?
@@ -21,4 +22,17 @@ class UserCell : UITableViewCell, Contextable, View {
         nameLabel?.text = nil
         surnameLabel?.text = nil
     }
+    
+    var presenter: Presenter<UserCell, UserViewModel>? {
+        didSet {
+            
+            guard let viewModel = context as? UserViewModel else {
+                return
+            }
+            
+            presenter?.update(view: self, with: viewModel)
+        }
+    }
 }
+
+extension UserCell : View { }

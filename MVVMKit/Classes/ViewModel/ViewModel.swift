@@ -15,6 +15,6 @@ public protocol ViewModelHolder {
     var viewModel: VM? { get }
 }
 
-public protocol ViewModelObserver: ViewModelHolder {
+public protocol ViewModelObserver : ViewModelHolder {
     func bind()
 }

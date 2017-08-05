@@ -10,8 +10,15 @@ import Foundation
 import MVVMKit
 
 struct UserViewModel : ViewModel {
+    
+    enum Gender : String {
+        case male
+        case female
+    }
+    
     var name: String = "Name"
     var surname: String = "Surname"
+    var gender: Gender = .male
 }
 
 struct UsersViewModel : ViewModel {
